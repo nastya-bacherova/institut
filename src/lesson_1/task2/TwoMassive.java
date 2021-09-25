@@ -1,6 +1,7 @@
 package lesson_1.task2;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 //4.2.	Даны два одномерных массива Xn и Yk. Сформировать новый массив Zm, состоящий из элементов массива Xn
@@ -10,15 +11,21 @@ public class TwoMassive {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Введите размер массива Xn: ");
-        int sizeXn = scanner.nextInt();
-        int[] arrayXn = new int[sizeXn];
+        try {
+            System.out.print("Введите размер массива Xn: ");
+            int sizeXn = scanner.nextInt();
+            int[] arrayXn = new int[sizeXn];
 
-        System.out.print("Введите размер массива Yk: ");
-        int sizeYk = scanner.nextInt();
-        int[] arrayYk = new int[sizeYk];
+            System.out.print("Введите размер массива Yk: ");
+            int sizeYk = scanner.nextInt();
+            int[] arrayYk = new int[sizeYk];
 
-        writeArrays(arrayXn, arrayYk);
+            writeArrays(arrayXn, arrayYk);
+        } catch (NegativeArraySizeException e) {
+            System.out.println("Размер массива не может быть отрицательным!");
+        } catch (InputMismatchException e) {
+            System.out.println("На вход принимаются только цифры!");
+        }
     }
 
     public static void writeArrays (int[] arrayXn, int[] arrayYk) {
