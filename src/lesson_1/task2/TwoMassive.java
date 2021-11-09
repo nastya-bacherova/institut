@@ -23,7 +23,8 @@ public class TwoMassive {
 
             int[] newArrXn = writeArraysXn(arrayXn);
             int[] newArrYk = writeArraysYk(arrayYk);
-            makeArraysZm(newArrXn,newArrYk);
+//            makeArraysZm(newArrXn,newArrYk);
+            System.out.println("Сформированный массив Zm = " + Arrays.toString(makeArraysZm(newArrXn,newArrYk)));
 
 
         } catch (NegativeArraySizeException e) {
@@ -93,7 +94,7 @@ public class TwoMassive {
         return newArrYk;
     }
 
-    public static void makeArraysZm(int[] newArrXn, int[] newArrYk) {
+    public static int[] makeArraysZm(int[] newArrXn, int[] newArrYk) {
         int newSizeArrZm = newArrXn.length + newArrYk.length;
         int[] arrZm = new int[newSizeArrZm];
         int j = 0;
@@ -106,7 +107,7 @@ public class TwoMassive {
             arrZm[j] = newArrYk[m];
             j++;
         }
-        System.out.println(Arrays.toString(arrZm));
+        return arrZm;
     }
 }
 

@@ -28,5 +28,4 @@ public class Perimeter {
             System.out.println("Периметр равностороннего треугольника равен: " + side * 3);
         }
     }
-
 }
