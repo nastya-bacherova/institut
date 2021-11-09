@@ -38,35 +38,65 @@ public class Main {
 
     //метод вывода списка депозитов у заданного пользователя
     public static void getListDeposits (BankoyProduct[] bankoyProductsArr) {
-        System.out.print("Введите ФИО клиента для получения его оформленных депозитов: " );
+
+        System.out.print("Введите ФИО клиента для получения его оформленных депозитов: ");
         Scanner scanner = new Scanner(System.in);
         String fio = scanner.nextLine();
 
         int x = bankoyProductsArr.length;
-        System.out.println("Депозиты клиента - " +  fio + ":" );
+        int check = 0;
 
+        //проверка на существование юзера в системе
         for (int i = 0; i < x; i++) {
             if (fio.equals(bankoyProductsArr[i].getFioClient())) {
-                boolean b = bankoyProductsArr[i] instanceof Deposit;
-                if (b == true) {
-                    System.out.println(((Deposit) bankoyProductsArr[i]).getViewDepozit());
-                }
+                check++;
             }
         }
-        //Получить сумму оформленных депозитов заданного вида
-        System.out.print("Введите вид депозита для получения их суммы у клиента - " + fio + ": ");
-        String dep = scanner.nextLine();
-        double sum = 0;
+        if (check == 0) {
+            System.out.println("Пользователь с ФИО - " + fio + " не найден.");
+        } else {
 
-        for (int i = 0; i < x; i++) {
-            if (fio.equals(bankoyProductsArr[i].getFioClient())) {
-                boolean b = bankoyProductsArr[i] instanceof Deposit;
-                if (b == true) {
-                    if (dep.equals(((Deposit) bankoyProductsArr[i]).getViewDepozit().getNameDepozit()))
-                    sum = ((Deposit) bankoyProductsArr[i]).getSum() + sum;
+            System.out.println("Депозиты клиента - " + fio + ":");
+
+            for (int i = 0; i < x; i++) {
+                if (fio.equals(bankoyProductsArr[i].getFioClient())) {
+                    boolean b = bankoyProductsArr[i] instanceof Deposit;
+                    if (b == true) {
+                        System.out.println(((Deposit) bankoyProductsArr[i]).getViewDepozit());
+                    }
                 }
             }
+            //Получить сумму оформленных депозитов заданного вида
+            System.out.print("Введите вид депозита для получения их суммы у клиента - " + fio + ": ");
+            String dep = scanner.nextLine();
+            double sum = 0;
+            check = 0;
+
+            //проверка на существование вида депозита на заданного клиента
+            for (int i = 0; i < x; i++) {
+                if (fio.equals(bankoyProductsArr[i].getFioClient())) {
+                    boolean b = bankoyProductsArr[i] instanceof Deposit;
+                    if (b == true) {
+                        if (dep.equals(((Deposit) bankoyProductsArr[i]).getViewDepozit().getNameDepozit()))
+                            check ++;
+                    }
+                }
+            }
+
+            if (check == 0) {
+                System.out.println("Оформленный Вид депозита \"" + dep + "\" на клента - " + fio + " не найден.");
+            } else {
+                for (int i = 0; i < x; i++) {
+                    if (fio.equals(bankoyProductsArr[i].getFioClient())) {
+                        boolean b = bankoyProductsArr[i] instanceof Deposit;
+                        if (b == true) {
+                            if (dep.equals(((Deposit) bankoyProductsArr[i]).getViewDepozit().getNameDepozit()))
+                                sum = ((Deposit) bankoyProductsArr[i]).getSum() + sum;
+                        }
+                    }
+                }
+                System.out.println("Клиент - " + fio + " оформил депозит вида \"" + dep + "\" на сумму " + sum);
+            }
         }
-        System.out.println("Клиент - " + fio + " оформил депозит вида \"" + dep + "\" на сумму " + sum );
     }
 }
