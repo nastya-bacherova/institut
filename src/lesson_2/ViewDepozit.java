@@ -24,4 +24,9 @@ public class ViewDepozit {
     public void setNameDepozit(String nameDepozit) {
         this.nameDepozit = nameDepozit;
     }
+
+    @Override
+    public String toString() {
+        return  nameDepozit;
+    }
 }

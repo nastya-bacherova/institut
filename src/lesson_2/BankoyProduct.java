@@ -22,6 +22,8 @@ public class BankoyProduct {
     }
 
     public BankoyProduct(String bank, String fioClient) {
+        this.bank = bank;
+        this.fioClient = fioClient;
     }
 
     public String getBank() {

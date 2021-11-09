@@ -60,4 +60,8 @@ public class Deposit extends BankoyProduct{
         this.sum = sum;
     }
 
+    @Override
+    public String toString() {
+        return String.valueOf(viewDepozit);
+    }
 }
