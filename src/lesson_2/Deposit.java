@@ -1,6 +1,6 @@
 package lesson_2;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 //Подкласс – Депозит (Вид депозита: код, наименование, Процент, Срок депозита, Сумма, Перечисление процентов).
 public class Deposit extends BankoyProduct{
@@ -11,7 +11,7 @@ public class Deposit extends BankoyProduct{
     private int term; //Срок депозита
     private double sum;
 
-    public Deposit(String bank, String fioClient, Date dateOfIssue, ViewDepozit viewDepozit, double percent, int term, double sum) {
+    public Deposit(String bank, String fioClient, LocalDateTime dateOfIssue, ViewDepozit viewDepozit, double percent, int term, double sum) {
         super(bank, fioClient, dateOfIssue);
         this.viewDepozit = viewDepozit;
         this.percent = percent;

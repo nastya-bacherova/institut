@@ -1,20 +1,20 @@
 package lesson_2;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 //Базовый класс Банковский продукт (Банк, ФИО клиента, Дата выдачи).
 public class BankoyProduct {
     private String bank;
     private String fioClient;
-    private String dateOfIssue;
+    private LocalDateTime dateOfIssue;
 
-    public BankoyProduct(String bank, String fioClient, String dateOfIssue) {
+    public BankoyProduct(String bank, String fioClient, LocalDateTime dateOfIssue) {
         this.bank = bank;
         this.fioClient = fioClient;
         this.dateOfIssue = dateOfIssue;
     }
 
-    public BankoyProduct(String bank, String fioClient, Date dateOfIssue) {
+    public BankoyProduct() {
     }
 
     public BankoyProduct(String bank) {
@@ -42,14 +42,11 @@ public class BankoyProduct {
         this.fioClient = fioClient;
     }
 
-    public String  getDateOfIssue() {
+    public LocalDateTime getDateOfIssue() {
         return dateOfIssue;
     }
 
-    public void setDateOfIssue(String  dateOfIssue) {
+    public void setDateOfIssue(LocalDateTime dateOfIssue) {
         this.dateOfIssue = dateOfIssue;
     }
-
-
-
 }

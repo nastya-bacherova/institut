@@ -1,5 +1,6 @@
 package lesson_2;
 
+import java.time.LocalDateTime;
 import java.util.Scanner;
 
 public class Main {
@@ -17,12 +18,12 @@ public class Main {
 
 
         BankoyProduct[] bankoyProductsArr = new BankoyProduct[12];
-        bankoyProductsArr[0]  = new BankoyProduct("Сбербанк", "Андерсон Алексей Андреевич", "2020-12-12");
-        bankoyProductsArr[1]  = new BankoyProduct("ПБС", "Аксенов Алексей Дмитриевич", "2021-09-04");
-        bankoyProductsArr[2]  = new BankoyProduct("Таврический банк", "Плотонова Арина Алексеевна", "2019-04-07");
-        bankoyProductsArr[3]  = new BankoyProduct("Таврический банк", "Плотонова Арина Алексеевна", "2020-04-07");
-        bankoyProductsArr[4]  = new BankoyProduct("Сбербанк", "Аксенов Алексей Дмитриевич", "2019-06-06");
-        bankoyProductsArr[5]  = new BankoyProduct("ПБС", "Плотонова Арина Алексеевна", "2018-04-07");
+        bankoyProductsArr[0]  = new BankoyProduct("Сбербанк", "Андерсон Алексей Андреевич", LocalDateTime.of(2020,12,17,0,0));
+        bankoyProductsArr[1]  = new BankoyProduct("ПБС", "Аксенов Алексей Дмитриевич", LocalDateTime.of(2021,9,4,0,0));
+        bankoyProductsArr[2]  = new BankoyProduct("Таврический банк", "Плотонова Арина Алексеевна", LocalDateTime.of(2019,4,7,0,0));
+        bankoyProductsArr[3]  = new BankoyProduct("Таврический банк", "Плотонова Арина Алексеевна", LocalDateTime.of(2020,4,7,0,0));
+        bankoyProductsArr[4]  = new BankoyProduct("Сбербанк", "Аксенов Алексей Дмитриевич", LocalDateTime.of(2020,6,6,0,0));
+        bankoyProductsArr[5]  = new BankoyProduct("ПБС", "Плотонова Арина Алексеевна", LocalDateTime.of(2018,4,7,0,0));
 
         bankoyProductsArr[6]  = new Deposit("Сбербанк","Андерсон Алексей Андреевич", viewDepozit1, 6.7, 367, 1000000);
         bankoyProductsArr[7]  = new Deposit("ПБС","Аксенов Алексей Дмитриевич", viewDepozit2, 7.25, 91, 30000);
@@ -34,7 +35,6 @@ public class Main {
 
         getListDeposits(bankoyProductsArr);
     }
-
 
     //метод вывода списка депозитов у заданного пользователя
     public static void getListDeposits (BankoyProduct[] bankoyProductsArr) {
@@ -55,7 +55,6 @@ public class Main {
         if (check == 0) {
             System.out.println("Пользователь с ФИО - " + fio + " не найден.");
         } else {
-
             System.out.println("Депозиты клиента - " + fio + ":");
 
             for (int i = 0; i < x; i++) {
