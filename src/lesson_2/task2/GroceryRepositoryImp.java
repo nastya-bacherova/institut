@@ -91,7 +91,7 @@ public class GroceryRepositoryImp implements GroceryRepository{
 
     //списание негодного продукта
     @Override
-    public void writeОffProduct(HashMap<Integer, Product> repository) {
+    public HashMap<Integer, Product> writeОffProduct(HashMap<Integer, Product> repository) {
         System.out.println("----------------------------------------------");
         System.out.println("Состояние хранилища: ");
         Iterator iterator = repository.entrySet().iterator();
@@ -118,10 +118,17 @@ public class GroceryRepositoryImp implements GroceryRepository{
         while (iterator2.hasNext()) {
             System.out.println(iterator2.next());
         }
+        return repository;
     }
 
+    //получение информации о наличии продукта
     @Override
-    public String getInfoAvailability() {
-        return null;
+    public void getInfoAvailability(HashMap<Integer, Product> repository) {
+        System.out.println("----------------------------------------------");
+        System.out.println("Состояние хранилища: ");
+        Iterator iterator = repository.entrySet().iterator();
+        while (iterator.hasNext()) {
+            System.out.println(iterator.next());
+        }
     }
 }
