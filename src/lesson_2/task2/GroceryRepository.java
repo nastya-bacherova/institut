@@ -8,9 +8,9 @@ public interface GroceryRepository {
 
     HashMap<Integer, Product> giveProduct(HashMap<Integer, Product> repository);
 
-    void changeProductTerm(HashMap<Integer, Product> repository);
+    HashMap<Integer, Product> changeProductTerm(HashMap<Integer, Product> repository);
 
-    String writeОffProduct();
+    void writeОffProduct(HashMap<Integer, Product> repository);
 
     String getInfoAvailability();
 

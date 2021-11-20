@@ -12,9 +12,9 @@ public class Main {
     public static void main(String[] args) {
 
         Product[] product = new Product[3];
-        product[0] = new Product("Молоко",7,  LocalDateTime.of(2021,12,20,0,0));
-        product[1] = new Product("Хлеб",5,  LocalDateTime.of(2021,12,24,0,0));
-        product[2] = new Product("Масло",35,  LocalDateTime.of(2021,12,17,0,0));
+        product[0] = new Product("Молоко",7,  LocalDateTime.of(2021,11,20,0,0));
+        product[1] = new Product("Хлеб",5,  LocalDateTime.of(2021,11,10,0,0));
+        product[2] = new Product("Масло",35,  LocalDateTime.of(2021,9,20,0,0));
 
         GroceryRepositoryImp groceryRepository = new GroceryRepositoryImp();
 
@@ -22,7 +22,9 @@ public class Main {
 
         HashMap<Integer, Product>  newRepo = groceryRepository.giveProduct(groceryRepository.putProduct(product));
 
-        groceryRepository.changeProductTerm(newRepo);
+//        groceryRepository.changeProductTerm(newRepo);
+
+        groceryRepository.writeОffProduct(newRepo);
 
 
 

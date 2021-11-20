@@ -1,5 +1,7 @@
 package lesson_2.task2;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -52,7 +54,7 @@ public class GroceryRepositoryImp implements GroceryRepository{
 
     //изменение срока годости продукта
     @Override
-    public void changeProductTerm(HashMap<Integer, Product> repository) {
+    public HashMap<Integer, Product> changeProductTerm(HashMap<Integer, Product> repository) {
         System.out.println("----------------------------------------------");
         System.out.println("Состояние хранилища: ");
         Iterator iterator = repository.entrySet().iterator();
@@ -84,12 +86,38 @@ public class GroceryRepositoryImp implements GroceryRepository{
         } else {
             System.out.println("Продукта с кодом - \"" + kodProd + "\" не было найдено.");
         }
+        return repository;
     }
 
     //списание негодного продукта
     @Override
-    public String writeОffProduct() {
-        return null;
+    public void writeОffProduct(HashMap<Integer, Product> repository) {
+        System.out.println("----------------------------------------------");
+        System.out.println("Состояние хранилища: ");
+        Iterator iterator = repository.entrySet().iterator();
+        while (iterator.hasNext()) {
+            System.out.println(iterator.next());
+        }
+
+        System.out.println("----------------------------------------------");
+        System.out.println("Процесс списания продуктов с хранилища: ");
+
+        Iterator <Map.Entry<Integer,Product>> iterator1 = repository.entrySet().iterator();
+        while (iterator1.hasNext()) {
+            Map.Entry<Integer,Product> o = iterator1.next();
+            LocalDateTime newDateManufacture = o.getValue().getDateManufacture();
+            if ((newDateManufacture.plusDays(o.getValue().getTerm())).isBefore(LocalDateTime.now())) {
+                System.out.println("Продукт \"" + o.getValue().getNameProduct() + "\" списан. Срок годности истек " + newDateManufacture.plusDays(o.getValue().getTerm()));
+                iterator1.remove();
+            }
+        }
+
+        System.out.println("----------------------------------------------");
+        System.out.println("Хранилище после списания негодных продуктов: ");
+        Iterator iterator2 = repository.entrySet().iterator();
+        while (iterator2.hasNext()) {
+            System.out.println(iterator2.next());
+        }
     }
 
     @Override
