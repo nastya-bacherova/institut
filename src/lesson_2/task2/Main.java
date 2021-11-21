@@ -22,11 +22,11 @@ public class Main {
 
         HashMap<Integer, Product>  newRepo = groceryRepository.giveProduct(groceryRepository.putProduct(product));
 
-        groceryRepository.changeProductTerm(newRepo);
+        HashMap<Integer, Product>  newRepo2 = groceryRepository.changeProductTerm(newRepo);
 
-        groceryRepository.writeОffProduct(groceryRepository.changeProductTerm(newRepo));
+        HashMap<Integer, Product>  newRepo3 = groceryRepository.writeОffProduct(newRepo2);
 
-        groceryRepository.getInfoAvailability(groceryRepository.writeОffProduct(groceryRepository.changeProductTerm(newRepo)));
+        groceryRepository.getInfoAvailability(newRepo3);
 
     }
 
