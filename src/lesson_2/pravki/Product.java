@@ -1,4 +1,4 @@
-package lesson_2.task2;
+package lesson_2.pravki;
 
 import java.time.LocalDateTime;
 
