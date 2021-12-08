@@ -47,71 +47,54 @@ public class GroceryRepositoryImp<T> implements GroceryRepository<T> {
     //изменение срока годости продукта
     @Override
     public String changeProductTerm(T product) {
-            Product p = new Product();
-            System.out.println("----------------------------------------------");
-            System.out.print("Впишите новый срок годности для продукта \""+ p.getNameProduct() + "\"");
-
-        try {
-            Scanner scanner = new Scanner(System.in);
-            int newTerm = scanner.nextInt();
-            p.setTerm(newTerm);
-        } catch (InputMismatchException e) {
-            return "Введеный срок годности невалиден!";
+        System.out.println("----------------------------------------------");
+        if (repository.containsValue(product)) {
+        if (product instanceof Product) {
+            System.out.print("Впишите новый срок годности для продукта \"" + (((Product) product).getNameProduct()) + "\": ");
+            try {
+                Scanner scanner = new Scanner(System.in);
+                int newTerm = scanner.nextInt();
+                ((Product) product).setTerm(newTerm);
+            } catch (InputMismatchException e) {
+                return "Введеный срок годности невалиден!";
+            }
+            return "Срок годности у продукта успешно изменён!";
+        } else {
+            return "Продукт не соответсвует параметрам!";
+        }} else {
+            return "Продукта \"" + (((Product) product).getNameProduct()) + "\" не было найдено в хранилище!" ;
         }
-        return "Срок годности у продукта успешно изменён!";
     }
 
     //списание негодного продукта
     @Override
-    public HashMap<Integer, Product> writeОffProduct(HashMap<Integer, Product> repository) {
-        System.out.println("----------------------------------------------");
-        System.out.println("Состояние хранилища: ");
-        Iterator iterator = repository.entrySet().iterator();
-        while (iterator.hasNext()) {
-            System.out.println(iterator.next());
-        }
-
+    public void writeОffProduct() {
         System.out.println("----------------------------------------------");
         System.out.println("Процесс списания продуктов с хранилища: ");
-
-        Iterator<Map.Entry<Integer, Product>> iterator1 = repository.entrySet().iterator();
-        while (iterator1.hasNext()) {
-            Map.Entry<Integer, Product> o = iterator1.next();
-            LocalDateTime newDateManufacture = o.getValue().getDateManufacture();
-            if ((newDateManufacture.plusDays(o.getValue().getTerm())).isBefore(LocalDateTime.now())) {
-                System.out.println("Продукт \"" + o.getValue().getNameProduct() + "\" списан. Срок годности истек " + newDateManufacture.plusDays(o.getValue().getTerm()));
-                iterator1.remove();
-            }
-        }
-
-        System.out.println("----------------------------------------------");
-        System.out.println("Хранилище после списания негодных продуктов: ");
+        int count = 0;
 
         if (repository.isEmpty()) {
             System.out.println("В хранилище нет продуктов!");
         } else {
-            Iterator iterator2 = repository.entrySet().iterator();
-            while (iterator2.hasNext()) {
-                System.out.println(iterator2.next());
+            Iterator<Map.Entry<Integer, T>> iterator1 = repository.entrySet().iterator();
+            while (iterator1.hasNext()) {
+                Map.Entry<Integer, T> o = iterator1.next();
+                LocalDateTime newDateManufacture = ((Product) o.getValue()).getDateManufacture();
+                if ((newDateManufacture.plusDays(((Product) o.getValue()).getTerm())).isBefore(LocalDateTime.now())) {
+                    System.out.println("Продукт \"" + ((Product) o.getValue()).getNameProduct() + "\" списан. Срок годности истек " + newDateManufacture.plusDays(((Product) o.getValue()).getTerm()));
+                    iterator1.remove();
+                    count++;
+                }
             }
         }
-        return repository;
+        if (count == 0) {
+            System.out.println("В хранилище нет продуктов для списания!");
+        }
     }
 
     //получение информации о наличии продукта
     @Override
-    public void getInfoAvailability(HashMap<Integer, Product> repository) {
-        System.out.println("----------------------------------------------");
-        System.out.println("Состояние хранилища: ");
-        if (repository.isEmpty()) {
-            System.out.println("В хранилище нет продуктов!");
-        } else {
-            Iterator iterator = repository.entrySet().iterator();
-            while (iterator.hasNext()) {
-                System.out.println(iterator.next());
-            }
-        }
-
+    public String getInfoAvailability(T product) {
         System.out.println("----------------------------------------------");
         System.out.print("Впишите код продукта для получения информации о его наличии: ");
 
@@ -120,12 +103,12 @@ public class GroceryRepositoryImp<T> implements GroceryRepository<T> {
             int kodProd = scanner.nextInt();
 
             if (repository.containsKey(kodProd)) {
-                System.out.println("Продукт с кодом - \"" + kodProd + "\" имеется в хранилище!");
+                return "Продукт с кодом - \"" + kodProd + "\" имеется в хранилище!";
             } else {
-                System.out.println("Продукта с кодом - \"" + kodProd + "\" не было найдено в хранилище.");
+                return "Продукта с кодом - \"" + kodProd + "\" не было найдено в хранилище.";
             }
         } catch (InputMismatchException e) {
-            System.out.println("Введеный код не соответствует требованиям!");
+            return "Введеный код не соответствует требованиям!";
         }
     }
 

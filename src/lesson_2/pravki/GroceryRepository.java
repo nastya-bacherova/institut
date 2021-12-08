@@ -1,6 +1,4 @@
 package lesson_2.pravki;
-import lesson_2.pravki.Product;
-import java.util.HashMap;
 
 //Ведение многопродуктового хранилища: помещение продукта в
 //хранилище, выдача продукта, изменение сортности продукта (срока
@@ -8,18 +6,16 @@ import java.util.HashMap;
 //наличии продукта
 
 public interface GroceryRepository<T>{
-    //замечания: Сделать дженерик к интерфейсу + передавать ОДИН ОБЪЕКТ в метод put. Возвращать тип boolean или String!
-    //Пишем сервис! (потом работа может быть перенесена в БД).
 
-    String putProduct(T product); //1 - объект
+    String putProduct(T product);
 
     String giveProduct(T product);
 
     String changeProductTerm(T product);
 
-    HashMap<Integer, Product> writeОffProduct(HashMap<Integer, Product> repository);
+    void writeОffProduct();
 
-    void getInfoAvailability(HashMap<Integer, Product> repository); // изменить тип, чтобы метод возвращал!
+    String getInfoAvailability(T product);
 
     void getRepository();
 }
